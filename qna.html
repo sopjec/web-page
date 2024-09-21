@@ -1,28 +1,111 @@
-<!-- example.html -->
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QnA Page</title>
-</head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 1100px;
+        margin: 0 auto;
+        margin-top: 100px;
+        border: 1px solid white;
+        padding: 20px;
+      }
+      .title {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid white;
+        text-align: center;
+        padding: 10px;
+      }
+      th {
+        background-color: #e47b8d;
+      }
+      td {
+        height: 40px;
+      }
+      /* 각 열의 넓이 조정 */
+      th:nth-child(1) {
+        width: 10%;
+      } /* 순번 */
+      th:nth-child(2) {
+        width: 50%;
+      } /* 제목 */
+      th:nth-child(3) {
+        width: 20%;
+      } /* 아이디 */
+      th:nth-child(4) {
+        width: 20%;
+      } /* 답변수 */
+    </style>
+  </head>
 
-<body>
-
+  <body>
     <div id="header"></div>
 
-    <!-- 나머지 페이지 내용 -->
+    <div class="container">
+      <div class="title">문의하기</div>
+      <table>
+        <thead>
+          <tr>
+            <th>순번</th>
+            <th>제목</th>
+            <th>아이디</th>
+            <th>답변수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <script>
-        // header.html 파일을 불러와서 #header div에 삽입
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-            });
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
     </script>
-
-</body>
-
+  </body>
 </html>
