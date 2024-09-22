@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QnA Page</title>
+    <title>Company Analysis Page</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -11,87 +11,56 @@
       .container {
         width: 1100px;
         margin: 0 auto;
-        margin-top: 20px;
+        margin-top: 50px;
         border: 1px solid rgb(27, 27, 27);
         padding: 20px;
       }
       .title {
         font-size: 24px;
         margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex; /* 플렉스 박스로 변경 */
+        justify-content: space-between; /* 요소들 사이의 공간을 균등하게 분배 */
+        align-items: center; /* 세로 정렬 */
       }
-      button {
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
+      .search-bar {
+        width: 80%; /* 검색바 너비 조정 */
+        padding: 10px; /* 패딩 */
+        border: 1px solid #ccc; /* 테두리 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        margin-bottom: 20px; /* 아래 여백 */
+        display: inline-block; /* 인라인 블록으로 설정 */
       }
-      button:hover {
-        opacity: 0.8;
-      }
-      .file-select-button {
-        background-color: white;
-        color: #e47b8d;
-      }
-      .submit-button {
-        background-color: #e47b8d;
-        color: white;
+      .search-button {
+        padding: 10px 15px; /* 패딩 */
+        background-color: #e47b8d; /* 버튼 배경 색상 */
+        color: white; /* 버튼 글자 색상 */
+        border: none; /* 테두리 없음 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        cursor: pointer; /* 커서 변경 */
+        margin-left: 5px; /* 검색바와 버튼 간의 간격 */
       }
       .form-group {
-        margin-bottom: 15px;
+        display: flex; /* 플렉스 박스로 변경 */
+        align-items: center; /* 세로 정렬 */
+        margin-right: 30px; /* 요소들 사이의 여백을 줄임 */
       }
       .form-group label {
-        margin-right: 10px;
+        margin-right: 5px; /* 라벨과 선택 상자 간의 여백 */
+        font-size: 14px; /* 글자 크기 줄임 */
       }
-      .flex-container {
-        display: flex; /* 플렉스 박스 설정 */
-        gap: 10px; /* 요소 간의 간격 조정 */
-        align-items: center; /* 수직 가운데 정렬 */
+      .register-button {
+        margin-left: auto; /* 버튼을 오른쪽 끝에 고정 */
       }
-      .output-dropdown {
-        width: 200px;
-        height: 30px;
-        border: 1px solid #000;
-        padding: 5px;
-        margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
+      button {
+        background-color: #e47b8d; /* 버튼 배경 색상 */
+        color: white; /* 버튼 글자 색상 */
+        border: none; /* 테두리 없음 */
+        padding: 10px 15px; /* 패딩 */
+        cursor: pointer; /* 커서 변경 */
+        border-radius: 5px; /* 모서리 둥글게 */
       }
-      .output-title {
-        width: 500px;
-        height: 30px;
-        border: 1px solid #000;
-        padding: 5px;
-        margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
-        display: flex;
-        align-items: center; /* 수직 가운데 정렬 */
-      }
-      .output-date {
-        width: 150px;
-        height: 30px;
-        border: 1px solid #000;
-        padding: 5px;
-        margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
-        display: flex;
-        align-items: center; /* 수직 가운데 정렬 */
-        margin-left: auto; /* 오른쪽 끝으로 이동 */
-      }
-      .output-content {
-        width: 100%;
-        height: 200px;
-        border: 1px solid #000;
-        padding: 5px;
-        margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
-        resize: none; /* 크기 조정 불가 */
-        overflow: auto; /* 스크롤 추가 */
+      button:hover {
+        background-color: #d46a80; /* 호버 시 색상 변경 */
       }
       table {
         width: 100%;
@@ -109,25 +78,30 @@
       td {
         height: 40px;
       }
+      /* 각 열의 넓이 조정 */
       th:nth-child(1) {
         width: 5%;
-      }
+      } /* NO */
       th:nth-child(2) {
-        width: 60%;
-      }
+        width: 50%;
+      } /* 제목 */
       th:nth-child(3) {
-        width: 15%;
-      }
+        width: 10%;
+      } /* 직무 */
       th:nth-child(4) {
         width: 10%;
-      }
+      } /* 업종 */
       th:nth-child(5) {
+        width: 15%;
+      } /* 등록 날짜 */
+      th:nth-child(6) {
         width: 10%;
-      }
+      } /* 조회수 */
+      /* 페이지 번호 영역 스타일 */
       .pagination {
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
+        text-align: center; /* 페이지 번호 가운데 정렬 */
+        margin-top: 50px; /* 테이블과 페이지 번호 사이의 여백 */
+        margin-bottom: 20px; /* 페이지 번호와 화면 하단 사이의 여백 */
       }
       .pagination a {
         display: inline-block;
@@ -145,43 +119,201 @@
       .pagination a:hover {
         background-color: #ddd;
       }
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-      }
     </style>
   </head>
+
   <body>
     <div id="header"></div>
 
     <div class="container">
-      <form>
-        <div class="form-group flex-container">
-          <label for="title">제목</label>
-          <div class="output-title" id="title">제목이 여기에 표시됩니다.</div>
-        </div>
+      <div>
+        <input type="text" class="search-bar" placeholder="검색..." />
+        <button class="search-button">검색</button>
+      </div>
 
-        <div class="form-group flex-container">
-          <label for="query-type">직무 선택</label>
-          <div class="output-dropdown" id="query-type">직무1</div>
-
-          <label for="industry-type">업종 선택</label>
-          <div class="output-dropdown" id="industry-type">업종1</div>
-          <div class="output-date" id="date">2024-09-23</div>
-        </div>
-
+      <div class="title">
         <div class="form-group">
-          <label for="content">작성하기</label>
-          <div class="output-content" id="content">
-            내용이 여기에 표시됩니다.
-          </div>
-          <label for="content">↳ 답변</label>
-          <div class="output-content" id="content">
-            내용이 여기에 표시됩니다.
-          </div>
+          <label for="job-type">· 직무 선택</label>
+          <select id="job-type">
+            <option value="type1">직무1</option>
+            <option value="type2">직무2</option>
+            <option value="type3">직무3</option>
+          </select>
         </div>
-      </form>
+        <div class="form-group">
+          <label for="industry-type">· 업종 선택</label>
+          <select id="industry-type">
+            <option value="type1">업종1</option>
+            <option value="type2">업종2</option>
+            <option value="type3">업종3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sort-type">· 정렬</label>
+          <select id="sort-type">
+            <option value="type1">최신순</option>
+            <option value="type2">추천순</option>
+          </select>
+        </div>
+        <div class="register-button">
+          <button onclick="location.href='cAnal-submit.html'">
+            + 등록하기
+          </button>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>제목</th>
+            <th>직무</th>
+            <th>업종</th>
+            <th>등록 날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <!-- 추가적인 데이터 행들 -->
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- 페이지 번호 영역 추가 -->
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        <!-- 이전 페이지 -->
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">7</a>
+        <a href="#">8</a>
+        <a href="#">9</a>
+        <a href="#">10</a>
+        <a href="#">&raquo;</a>
+        <!-- 다음 페이지 -->
+      </div>
     </div>
 
     <script>
