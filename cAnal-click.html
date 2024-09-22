@@ -80,6 +80,7 @@
         color: black; /* 글씨 색상 검정색 */
         display: flex;
         align-items: center; /* 수직 가운데 정렬 */
+        margin-left: auto; /* 오른쪽 끝으로 이동 */
       }
       .output-content {
         width: 100%;
@@ -175,6 +176,10 @@
 
         <div class="form-group">
           <label for="content">작성하기</label>
+          <div class="output-content" id="content">
+            내용이 여기에 표시됩니다.
+          </div>
+          <label for="content">↳ 답변</label>
           <div class="output-content" id="content">
             내용이 여기에 표시됩니다.
           </div>
