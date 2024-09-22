@@ -46,52 +46,72 @@
         margin-right: 10px;
       }
       .flex-container {
-        display: flex; /* 플렉스 박스 설정 */
-        gap: 10px; /* 요소 간의 간격 조정 */
-        align-items: center; /* 수직 가운데 정렬 */
+        display: flex;
+        gap: 10px;
+        align-items: center;
       }
       .output-dropdown {
         width: 200px;
         height: 30px;
         border: 1px solid #000;
-        padding: 5px;
+        padding: 10px; /* 여백 넉넉히 */
         margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
+        background-color: white;
+        color: black;
       }
       .output-title {
         width: 500px;
         height: 30px;
         border: 1px solid #000;
-        padding: 5px;
+        padding: 10px; /* 여백 넉넉히 */
         margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
+        background-color: white;
+        color: black;
         display: flex;
-        align-items: center; /* 수직 가운데 정렬 */
+        align-items: center;
       }
       .output-date {
         width: 150px;
         height: 30px;
         border: 1px solid #000;
-        padding: 5px;
+        padding: 10px; /* 여백 넉넉히 */
         margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
+        background-color: white;
+        color: black;
         display: flex;
-        align-items: center; /* 수직 가운데 정렬 */
-        margin-left: auto; /* 오른쪽 끝으로 이동 */
+        align-items: center;
+        margin-left: auto;
       }
       .output-content {
         width: 100%;
         height: 200px;
         border: 1px solid #000;
-        padding: 5px;
+        padding: 15px; /* 여백 넉넉히 */
         margin-top: 5px;
-        background-color: white; /* 배경 색상 흰색 */
-        color: black; /* 글씨 색상 검정색 */
-        resize: none; /* 크기 조정 불가 */
-        overflow: auto; /* 스크롤 추가 */
+        background-color: white;
+        color: black;
+        resize: none;
+        overflow: auto;
+      }
+      .input-content {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #000;
+        padding: 15px; /* 여백 넉넉히 */
+        margin-top: 5px;
+        background-color: white;
+        color: black;
+        resize: none;
+        overflow: auto;
+      }
+      .small-output-content {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #000;
+        padding: 10px; /* 여백 넉넉히 */
+        margin-top: 5px;
+        background-color: white;
+        color: black;
       }
       table {
         width: 100%;
@@ -176,12 +196,22 @@
           <div class="output-content" id="content">
             내용이 여기에 표시됩니다.
           </div>
-          <label for="content">질문</label>
-          <div class="output-content" id="content">
+          <label for="question">질문</label>
+          <textarea
+            id="question"
+            class="input-content"
+            placeholder="질문을 입력하세요..."
+          ></textarea>
+          <label for="content">질문 1</label>
+          <div class="small-output-content" id="content1">
             내용이 여기에 표시됩니다.
           </div>
-          <label for="content">↳ 답변</label>
-          <div class="output-content" id="content">
+          <label for="answer">↳ 답변</label>
+          <div
+            class="small-output-content"
+            id="answer"
+            style="margin-left: 10px"
+          >
             내용이 여기에 표시됩니다.
           </div>
         </div>
