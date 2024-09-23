@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,25 +8,20 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            width: 100%;
-            height: 1000px;
             margin: 0;
             padding: 0;
-            /* 원형 그라데이션 */
-            /*background: radial-gradient(circle, #61495d, rgb(27, 27, 27));*/
             background-color: rgb(27, 27, 27);
             color: white;
+            overflow-x: hidden;
         }
         
         header {
-            width: 100%;
             height: 100px;
-            display: absolute;
+            display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
             background-color: transparent;
-            width: 100%;
             border-bottom: 1px solid rgb(119, 119, 119);
         }
         
@@ -33,61 +31,126 @@
         }
         
         .logo {
-            float: left;
-            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
         }
         
         .nav-links {
-            text-align: center;
-            float: right;
-            right: 20px;
-            margin-top: 20px;
-            margin-right: 50px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0;
+            padding: 0;
         }
         
         .nav-item {
+            display: flex;
+            align-items: center;
             list-style-type: none;
+            margin: 0;
+            padding: 0;
         }
         
         .nav-item li {
-            float: left;
+            margin-left: 30px;
         }
         
         .nav-links a {
             color: white;
-            margin: 0 15px;
             text-decoration: none;
             font-size: 18px;
+            transition: color 0.3s ease;
         }
         
         .nav-links a:hover {
             color: rgb(228, 123, 141);
         }
+        
+        .mypage {
+            display: none;
+            align-items: center;
+            padding: 5px 15px;
+            border: 1px solid rgb(119, 119, 119);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .mypage:hover {
+            background-color: rgb(48, 48, 48);
+        }
+        
+        .mypage img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+        
+        .mypage .userid {
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(200, 200, 200);
+        }
     </style>
 </head>
 
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>logo</h1>
+            </a>
+        </div>
+        <nav class="nav-links">
+            <ul class="nav-item" id="auth-links">
+                <li>
+                    <a href="login.html">로그인</a>
+                </li>
+                <li>
+                    <a href="signup.html">회원가입</a>
+                </li>
+                <li>
+                    <a href="qna.html">1:1 문의하기</a>
+                </li>
+            </ul>
+            <div class="mypage" id="mypage">
+                <img src="img/profile.png" alt="Profile Image">
+                <p class="userid">user.id</p>
+            </div>
+        </nav>
+    </header>
 
-<header>
-    <div class="logo">
-        <a href='index.html'>
-            <!-- 
-    <img src="logo.png" alt="ㅇㅇ">
-    -->
-            <h1>logo</h1>
-        </a>
-    </div>
-    <nav class="nav-links">
-        <ul class="nav-item">
+    <script>
+        // 로그인 상태 확인 함수
+        function isLoggedIn() {
+            return sessionStorage.getItem('loggedIn') === 'true';
+        }
 
-            <li>
-                <a href="login.html">로그인</a>
-            </li>
-            <li>
-                <a href="signup.html">회원가입</a>
-            </li>
-            <li>
-                <a href="mypage.html">마이페이지</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+        // 로그인 상태에 따른 UI 변경 함수
+        function toggleLoginState() {
+            const authLinks = document.getElementById('auth-links');
+            const mypage = document.getElementById('mypage');
+
+            if (isLoggedIn()) {
+                authLinks.style.display = 'none';
+                mypage.style.display = 'flex';
+            } else {
+                authLinks.style.display = 'flex';
+                mypage.style.display = 'none';
+            }
+        }
+
+        // 페이지 로드 시 초기화
+        window.onload = function() {
+            toggleLoginState();
+        };
+    </script>
+</body>
+
+</html>

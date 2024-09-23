@@ -1,8 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings</title>
+    <style>
+        /* 기본 설정 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+
+         /* 링크 스타일 */
+        a {
+            text-decoration-line: none;
+            color: white;
+        }
+
+        /* 사이드 메뉴 스타일 */
+        .left-menu {
+            float: left;
+            width: 130px;
+            height: 100vh;
+            /* 전체 화면 높이로 설정 */
+            border-right: 1px solid rgb(119, 119, 119);
+            text-align: center;
+            padding: 0;
+            background-color: #ff69b4;
+            /* 배경색 핑크로 설정 */
+        }
+
+        .left-menu ul {
+            padding: 0;
+        }
+
+        .left-menu li {
+            list-style-type: none;
+            width: 100%;
+            height: 100px;
+            padding-top: 60px;
+            border-bottom: 1px rgb(119, 119, 119) solid;
+            cursor: pointer;
+            color: white;
+        }
+
+        .left-menu li:hover {
+            background-color: #ff1493;
+        }
+
+        .left-menu h3 {
+            margin: 0;
+        }
+
+        .main {
+            margin-left: 150px;
+            padding: 20px;
+        }
+
+        /* 검색 바 스타일 */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .search-bar button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar button:hover {
+            background-color: #ff1493;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-bar select {
+            padding: 10px;
+            margin-right: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 동일한 그림자 효과 */
+        }
+
+        .filter-bar button {
+            padding: 10px 20px; /* 동일한 크기 */
+            font-size: 16px; /* 동일한 글자 크기 */
+            background-color: #ff69b4; /* 동일한 배경색 */
+            color: white; /* 동일한 글자색 */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 동일한 그림자 효과 */
+        }
+
+        .filter-bar button:hover {
+            background-color: #ff1493;
+        }
+
+        /* 채용 공고 카드 리스트 스타일 */
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .job-card {
+            background-color: #ffffff;
+            color:#000000;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .job-card h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .job-card .scrap {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .job-card .scrap img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
 <body>
-
     <div id="header"></div>
+    <div class="left-menu">
+        <ul class="sub-menu">
+            <li id="jobPost_list">
+                <h3>채용공고</h3>
+            </li>
+        </ul>
+    </div>
 
-    <!-- 나머지 페이지 내용 -->
+    <!-- 채용공고 섹션 -->
+    <div class="main">
+        <!-- 상단 검색어 입력란 -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="검색어를 입력하세요" />
+            <button onclick="filterJobs()">검색</button>
+        </div>
+
+        <!-- 필터 선택 바 -->
+        <div class="filter-bar">
+            <select id="jobTypeFilter">
+                <option value="">직무</option>
+                <option value="프론트엔드">프론트엔드</option>
+                <option value="백엔드">백엔드</option>
+                <option value="디자인">디자인</option>
+            </select>
+            <select id="industryFilter">
+                <option value="">업종</option>
+                <option value="IT">IT</option>
+                <option value="제조">제조</option>
+                <option value="금융">금융</option>
+            </select>
+            <select id="locationFilter">
+                <option value="">지역</option>
+                <option value="서울">서울</option>
+                <option value="부산">부산</option>
+                <option value="대전">대전</option>
+            </select>
+            <button onclick="filterJobs()">검색</button>
+        </div>
+
+        <div class="job-list" id="jobList">
+            <!-- JavaScript로 채용공고 카드 출력 -->
+        </div>
+
+    </div>
 
     <script>
         // header.html 파일을 불러와서 #header div에 삽입
@@ -11,8 +233,58 @@
             .then(data => {
                 document.getElementById('header').innerHTML = data;
             });
-    </script>
 
+        // 채용공고 임시 데이터(예시)
+        const jobPostings = [
+            { id: 1, title: '프론트엔드 개발자 모집', company: 'ABC Corp', location: '서울', deadline: '2024-09-30', jobType: '프론트엔드', industry: 'IT' },
+            { id: 2, title: '백엔드 개발자 모집', company: 'XYZ Ltd', location: '부산', deadline: '2024-10-05', jobType: '백엔드', industry: 'IT' },
+            { id: 3, title: 'UI/UX 디자이너 모집', company: 'DesignHub', location: '대전', deadline: '2024-09-25', jobType: '디자인', industry: '디자인' }
+        ];
+
+        // 채용공고 데이터 출력 함수
+        function displayJobPostings(jobList) {
+            const jobListContainer = document.getElementById('jobList');
+            jobListContainer.innerHTML = ''; // 기존 내용을 초기화
+            jobList.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.classList.add('job-card');
+
+                jobCard.innerHTML = `
+                    <h3>${job.title}</h3>
+                    <p>회사명: ${job.company}</p>
+                    <p>지역: ${job.location}</p>
+                    <p>마감일: ${job.deadline}</p>
+                    <span class="scrap" onclick="scrapJob(${job.id})"><img src="star.png" alt="Scrap"></span>
+                `;
+                jobListContainer.appendChild(jobCard);
+            });
+        }
+
+        // 초기 데이터 출력
+        displayJobPostings(jobPostings);
+
+        // 채용공고 필터링 함수
+        function filterJobs() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const jobType = document.getElementById('jobTypeFilter').value;
+            const industry = document.getElementById('industryFilter').value;
+            const location = document.getElementById('locationFilter').value;
+
+            const filteredJobs = jobPostings.filter(job => {
+                return (jobType === '' || job.jobType === jobType) &&
+                       (industry === '' || job.industry === industry) &&
+                       (location === '' || job.location === location) &&
+                       (searchInput === '' || job.title.toLowerCase().includes(searchInput) || job.company.toLowerCase().includes(searchInput) || job.location.toLowerCase().includes(searchInput));
+            });
+
+            displayJobPostings(filteredJobs);
+        }
+
+        // 스크랩 기능 구현
+        function scrapJob(jobId) {
+            alert(`채용공고 ${jobId}를 스크랩했습니다!`);
+        }
+    </script>
 </body>
 
 </html>

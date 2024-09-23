@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white;
+            background-color: #f0f0f0;
         }
 
         .left-menu {
@@ -87,23 +87,12 @@
             <li onclick="showSection('resume-check')">자기소개서 조회</li>
         </ul>
     </div>
-    <div class="container">
-        <div id="resume-upload" class="section visible">
-            <h1>자기소개서 등록</h1>
-            <form id="question-form">
-                <div id="questions-container">
-                    <div class="question-answer">
-                        <textarea name="question" placeholder="질문" style="text-align:center; height: auto; width: 400px;" [(ngModel)]="memo"></textarea>
-                        <textarea name="answer" placeholder="답변" style="text-align:center; height: auto; width: 400px;" [(ngModel)]="memo"></textarea>
-                    </div>
-                </div>
-                <button type="button" onclick="addQuestion()">질답 추가</button> <!-- type="button"으로 변경 -->
-            </form>
-        </div>
-        <div id="resume-check" class="section">
-            <h1>자기소개서 조회</h1>
-            <p>이력서 조회하기</p>
-        </div>
+
+        <div class="container">    
+            <div id="resume-check" class="section visible">
+                <h1>자기소개서 조회</h1>
+                <p>이력서 조회하기</p>
+            </div>
     </div>
 
     <script>
@@ -138,18 +127,7 @@
             event.target.classList.add('active');
         }
 
-        // 질답 추가 버튼 클릭 시 새로운 질문과 답변 입력란을 추가하는 함수
-        function addQuestion() {
-            const container = document.getElementById('questions-container');
-            const newQuestionAnswer = document.createElement('div');
-            newQuestionAnswer.classList.add('question-answer');
-            newQuestionAnswer.innerHTML = `
-                <textarea name="question" placeholder="질문" style="text-align:center; height: auto; width: 400px;" [(ngModel)]="memo"></textarea>
-                <textarea name="answer" placeholder="답변" style="text-align:center; height: auto; width: 400px;" [(ngModel)]="memo"></textarea>
-
-            `;
-            container.appendChild(newQuestionAnswer);
-        }
+        
     </script>
 
 </body>
