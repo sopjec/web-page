@@ -44,6 +44,11 @@
       }
       .form-group label {
         margin-right: 10px;
+        background-color: #e47b8d; /* 배경색 분홍색 */
+        color: white; /* 글자 색상 흰색 */
+        padding: 5px 10px; /* 여백 추가 */
+        border-radius: 5px; /* 모서리 둥글게 */
+        display: inline-block; /* 블록처럼 보이게 */
       }
       .flex-container {
         display: flex; /* 플렉스 박스 설정 */
@@ -124,7 +129,7 @@
       }
       .button-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end; /* 버튼을 오른쪽 끝으로 */
         margin-top: 10px;
       }
     </style>
@@ -168,7 +173,6 @@
         </div>
 
         <div class="button-container">
-          <button type="button" class="file-select-button">파일선택</button>
           <button type="submit" class="submit-button">제출</button>
         </div>
       </form>
