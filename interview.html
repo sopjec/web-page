@@ -2,513 +2,301 @@
 <html lang="ko">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Interview Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>면접</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .section {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            width: 100%; 
+        }
+        .section input {
+            display: block;
+            margin: 10px auto;
+            width: 80%; 
+        }
+        /* 상단바 스타일 */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            width: 100px; /* 로고 크기 */
+            height: 50px; /* 로고 크기 */
+            background-image: url('logo.png'); /* 로고 이미지 경로 */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: auto;
+        }
+        .header nav a {
+            margin-left: 20px;
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .auth-links {
+            display: flex;
+            gap: 10px;
+        }
+        .auth-links a {
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+        }
+        .auth-links a:hover {
+            background-color: #f0f0f0;
+        }
+        /* 메인 레이아웃 설정 */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+         /* 왼쪽 사이드바 스타일 */
+         .sidebar {
+            width: 200px;
+            padding: 20px;
+            background-color: white;
+            border-right: 1px solid #ddd;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .sidebar li:hover {
+            background-color: #c6c6c6
+        }
+        .active {
+            display: block;
+        }
+        /* 오른쪽 메인 컨텐츠 */
+        .content {
+            flex-grow: 1;
+            padding-left: 20px;
+            
+        }
+        .content input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        } 
+
+        /*오른쪽 컨텐츠 스타일*/
+        .resumeTable {
+            color: black;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #333;
+            border-collapse: collapse;
+        }
+        .resumeTable th {
+            color:white;
+            background-color: #333;
+            padding: 5px;
+        }
+        .resumeTable td {
+            padding: 5px;
+            border: 1px solid #333;
+            border-collapse: collapse;
+            /*border-bottom: 1px solid #ddd; /* 행 구분선 */
+        }
+        .resumeTable tbody tr:hover td {
+            background-color: #c6c6c6;
+        }
+        .resumeTable tr {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .interviewTable {
+            color: black;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #333;
+            border-collapse: collapse;
+        }
+    
+        .interviewTable th {
+            color:white;
+            background-color: #333;
+            padding: 5px;
+        }
+        
+        .interviewTable td {
+            padding: 5px;
+            border: 1px solid #333;
+            border-collapse: collapse;
+            /*border-bottom: 1px solid #ddd; /* 행 구분선 */
+        }
+        .interviewTable tbody tr:hover td {
+            background-color: #c6c6c6;
+        }
+        .interviewTable tr {
+            height: 50px;
+            cursor: pointer;
+        }
+
+       
+
+    </style>
 </head>
 
-<style>
-    a {
-        text-decoration-line: none;
-        color: white;
-    }
-    
-    .left-menu {
-        float: left;
-        width: 130px;
-        height: 800px;
-        height: 100%;
-        border-right: 1px solid rgb(119, 119, 119);
-        text-align: center;
-        padding: 0;
-    }
-    
-    .left-menu ul {
-        padding: 0;
-    }
-    
-    .left-menu li {
-        list-style-type: none;
-        width: 100%;
-        height: 90px;
-        padding-top: 60px;
-        border-bottom: 1px rgb(119, 119, 119) solid;
-        cursor: pointer;
-    }
-    
-    .left-menu li:hover {
-        background-color: #ff69b4;
-    }
-    
-    .left-menu h3 {
-        margin: 0;
-    }
-    
-    .main {
-        margin-left: 130px;
-        height: 100vh;
-        padding: 20px;
-        color: white;
-    }
-    
-    button {
-        padding: 10px;
-        margin: 10px 0;
-        background-color: #ff69b4;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    
-    button:hover {
-        background-color: #ff1493;
-    }
-    
-    #select-interview {
-        background-image: url('img/interviewer.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        display: none;
-    }
-    
-    #resume-select {
-        display: block;
-    }
-    
-    #select-interview-check {
-        display: none;
-    }
-    
-    #webcam {
-        width: 300px;
-        position: absolute;
-        top: 200px;
-        right: 50px;
-    }
-    
-    .cc {
-        position: absolute;
-        top: 800px;
-        color: black;
-    }
-    
-    .recording-button {
-        width: 500px;
-        position: absolute;
-        left: 1600px;
-        top: 800px;
-    }
-    
-    .recording-button img {
-        width: 25px;
-    }
-    
-    #resumeTable {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    #resumeTable thead th {
-        background-color: #ff69b4;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        font-size: 18px;
-        border: 2px solid black;
-    }
-    
-    #resumeTable tbody td {
-        background-color: black;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        font-size: 16px;
-        border: 2px solid #ff69b4;
-    }
-    
-    #resumeTable tbody tr:hover td {
-        background-color: #ff1493;
-        color: white;
-    }
-    
-    #resumeTable tbody tr {
-        height: 50px;
-        cursor: pointer;
-    }
-    
-    #interviewTable {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    #interviewTable thead th {
-        background-color: #ff69b4;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        font-size: 18px;
-        border: 2px solid black;
-    }
-    
-    #interviewTable tbody td {
-        background-color: black;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        font-size: 16px;
-        border: 2px solid #ff69b4;
-    }
-    
-    #interviewTable tbody tr:hover td {
-        background-color: #ff1493;
-        color: white;
-    }
-    
-    #interviewTable tbody tr {
-        height: 50px;
-        cursor: pointer;
-    }
-    
-    #saveModal {
-        display: none;
-        position: fixed;
-        z-index: 999;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        color: black;
-    }
-    
-    #saveModal input {
-        width: 90%;
-        padding: 10px;
-        margin: 10px 0;
-    }
-    
-    #saveModal button {
-        background-color: #ff69b4;
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    
-    #saveModal button:hover {
-        background-color: #ff1493;
-    }
-</style>
-
 <body>
-
-    <div id="header"></div>
-
-    <div class="left-menu">
-        <ul class="sub-menu">
-            <li id="view-interview">
-                <h3>면접보기</h3>
-            </li>
-            <li id="view-records">
-                <h3>&nbsp;면접 기록 조회</h3>
-            </li>
-        </ul>
-    </div>
-
-    <div class="main" id="resume-select">
-        <h1>면접보기</h1>
-        <p>이력서 선택 후 면접이 시작됩니다. 면접 과정은 자동으로 녹화됩니다.</p>
-
-        <table id="resumeTable">
-            <thead>
-                <tr>
-                    <th>순번</th>
-                    <th>이력서 제목</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="main" id="select-interview">
-        <p class="cc">면접관 질문 자막</p>
-        <video id="webcam" autoplay playsinline></video>
-        <div class="recording-button">
-            <button id="stop-recording">녹화 종료</button>
-        </div>
-        <div id="saveModal">
-            <h2>영상 저장</h2>
-            <label for="videoTitle">영상 제목:</label>
-            <input type="text" id="videoTitle" placeholder="영상 제목을 입력하세요">
-            <button id="saveVideo">저장</button>
+    <div class="header">
+        <div class="logo"></div>
+        <nav>
+            <a href="jobPosting.html">채용공고</a>
+            <a href="interview.html">면접보기</a>
+            <a href="resume.html">자소서등록</a>
+            <a href="review.html">기업분석</a>
+        </nav>
+        <div class="auth-links">
+            &nbsp;
+            <a href="login.html">Sign in</a>
+            <a href="mypage.html">Mypage</a>
         </div>
     </div>
 
-    <div class="main" id="select-interview-check">
-        <h1>면접 기록 조회</h1>
-        <table id="interviewTable">
-            <thead>
-                <tr>
-                    <th>순번</th>
-                    <th>제목</th>
-                    <th>날짜</th>
-                    <th>영상 길이</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+    <!-- 나머지 페이지 내용 -->
+   <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li onclick="showSection('section1')">면접 보기</li>
+                <li onclick="showSection('section2')">면접 기록 조회</li> 
+            </ul>
+        </div>
+     
+        <div class="content">
+            <!-- 면접 보기 섹션 -->
+            <div id="section1" class="section">
+                <h1>면접보기</h1>
+                <p>이력서 선택 후 면접이 시작됩니다. 면접 과정은 자동으로 녹화됩니다.</p>
+                <table class="resumeTable">
+                    <thead>
+                        <tr>
+                            <th>순번</th>
+                            <th>이력서 제목</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>예시</td>
+                            <td>예시</td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+
+            </div>
+
+            <!-- 면접 기록 조회 섹션 -->
+            <div id="section2" class="section">
+                <h2>면접기록</h2>
+                <table class="interviewTable">
+                    <thead>
+                        <tr>
+                            <th width="100">순번</th>
+                            <th >제목</th>
+                            <th width="200">날짜</th>
+                            <th width="150">영상 길이</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>예시</td>
+                            <td>예시</td>
+                            <td>예시</td>
+                            <td>예시</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
     </div>
 
-    <div class="main" id="interview-recording-play" style="display: none;">
-        <video id="videoPlayer" width="90%" controls>
-            <source id="videoSource" src="" type="video/mp4">
-            당신의 브라우저는 비디오 태그를 지원하지 않습니다.
-        </video>
-    </div>
 
     <script>
+        // header.html 파일을 불러와서 #header div에 삽입
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header').innerHTML = data;
             });
-
-        const resumeSelectSection = document.getElementById('resume-select');
-        const selectInterviewSection = document.getElementById('select-interview');
-        const viewRecordsButton = document.getElementById('view-records');
-        const selectInterviewCheckSection = document.getElementById('select-interview-check');
-        const video = document.getElementById('webcam');
-        let stream;
-        let mediaRecorder;
-        let recordedChunks = [];
-        let interviewRecordings = [];
-
-        const viewInterviewButton = document.getElementById('view-interview');
-        viewInterviewButton.addEventListener('click', () => {
-            resumeSelectSection.style.display = 'block';
-            selectInterviewSection.style.display = 'none';
-            selectInterviewCheckSection.style.display = 'none';
-        });
-
-        async function startInterview(resumeTitle) {
-            resumeSelectSection.style.display = 'none';
-            selectInterviewSection.style.display = 'block';
-
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: true
-                });
-                video.srcObject = stream;
-
-                recordedChunks = [];
-                mediaRecorder = new MediaRecorder(stream);
-
-                mediaRecorder.ondataavailable = function(event) {
-                    if (event.data.size > 0) {
-                        recordedChunks.push(event.data);
-                    }
-                };
-
-                mediaRecorder.onstop = function() {
-                    const blob = new Blob(recordedChunks, {
-                        type: 'video/webm'
-                    });
-                    const url = URL.createObjectURL(blob);
-
-                    const currentDate = new Date().toISOString().slice(0, 10);
-                    const duration = calculateDuration(blob); // 실제 녹화된 영상 길이 계산
-
-                    interviewRecordings.push({
-                        title: resumeTitle,
-                        date: currentDate,
-                        duration: duration,
-                        videoUrl: url
-                    });
-
-                    updateInterviewTable();
-
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = url;
-                    downloadLink.download = 'interview_recording.webm';
-                    downloadLink.textContent = '녹화 영상 다운로드';
-                    document.body.appendChild(downloadLink);
-                };
-
-                mediaRecorder.start();
-                console.log('녹화 시작');
-            } catch (err) {
-                console.error('웹캠 접근 오류: ', err);
-            }
+        window.onload = function() {
+            showSection('section1');
         }
-
-        const resumeData = [{
-            id: 1,
-            title: '이력서 1'
-        }, {
-            id: 2,
-            title: '이력서 2'
-        }, {
-            id: 3,
-            title: '이력서 3'
-        }];
-
-        function displayResumeTable() {
-            const tableBody = document.querySelector('#resumeTable tbody');
-            tableBody.innerHTML = '';
-
-            resumeData.forEach((resume, index) => {
-                const row = document.createElement('tr');
-
-                const idCell = document.createElement('td');
-                idCell.textContent = index + 1;
-                row.appendChild(idCell);
-
-                const titleCell = document.createElement('td');
-                titleCell.textContent = resume.title;
-                row.appendChild(titleCell);
-
-                row.addEventListener('click', () => startInterview(resume.title));
-
-                tableBody.appendChild(row);
+        function showSection(sectionId) {
+            // 모든 섹션을 숨김
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function (section) {
+                section.classList.remove('active');
             });
+            // 선택된 섹션만 표시
+            var activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
         }
 
-        interviewRecordings = [{
-            id: 1,
-            title: '첫번째 면접',
-            date: '2024-09-25',
-            duration: '10:00',
-            videoUrl: 'example_video1.mp4'
-        }, {
-            id: 2,
-            title: '두번째 면접',
-            date: '2024-09-25',
-            duration: '12:00',
-            videoUrl: 'example_video2.mp4'
-        }];
 
-        function updateInterviewTable() {
-            const tableBody = document.querySelector('#interviewTable tbody');
-            tableBody.innerHTML = '';
 
-            if (interviewRecordings.length === 0) {
-                const emptyRow = document.createElement('tr');
-                const emptyCell = document.createElement('td');
-                emptyCell.colSpan = 4;
-                emptyCell.textContent = '면접 기록이 없습니다.';
-                emptyRow.appendChild(emptyCell);
-                tableBody.appendChild(emptyRow);
-            } else {
-                interviewRecordings.forEach((interview, index) => {
-                    const row = document.createElement('tr');
 
-                    const idCell = document.createElement('td');
-                    idCell.textContent = index + 1;
-                    row.appendChild(idCell);
 
-                    const titleCell = document.createElement('td');
-                    titleCell.textContent = interview.title;
-                    titleCell.style.cursor = 'pointer';
-                    titleCell.addEventListener('click', () => loadVideo(interview.videoUrl));
-                    row.appendChild(titleCell);
+        // 문의 기록 데이터 (예시)
+        const inquiries = [
+            { 순번: 1, 제목: "로그인 오류", 날짜: "2024-09-20", 답변수: 2 },
+            { 순번: 2, 제목: "비밀번호 변경 요청", 날짜: "2024-09-18", 답변수: 1 },
+            { 순번: 3, 제목: "회원가입 문제", 날짜: "2024-09-15", 답변수: 3 }
+        ];
+        
+        //나의 문의 기록 테이블에 행 추가 함수
+        function populateTable() {
+            const tableBody = document.querySelector("#inquiryTable tbody");
 
-                    const dateCell = document.createElement('td');
-                    dateCell.textContent = interview.date;
-                    row.appendChild(dateCell);
+            // 문의 데이터 배열을 순회하며 테이블에 행을 추가
+            inquiries.forEach((inquiry) => {
+                const row = document.createElement("tr");
 
-                    const durationCell = document.createElement('td');
-                    durationCell.textContent = interview.duration;
-                    row.appendChild(durationCell);
+                // 각 데이터(순번, 제목, 날짜, 답변수)를 셀로 추가
+                for (let key in inquiry) {
+                    const cell = document.createElement("td");
+                    cell.textContent = inquiry[key];
+                    row.appendChild(cell);
+                }
 
-                    tableBody.appendChild(row);
-                });
-            }
-        }
-
-        function loadVideo(videoUrl) {
-            document.getElementById('select-interview-check').style.display = 'none';
-            document.getElementById('interview-recording-play').style.display = 'block';
-
-            const videoSource = document.getElementById('videoSource');
-            videoSource.src = videoUrl;
-
-            const videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.load();
-            videoPlayer.play();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            displayResumeTable();
-            updateInterviewTable();
-        });
-
-        viewRecordsButton.addEventListener('click', () => {
-            resumeSelectSection.style.display = 'none';
-            selectInterviewSection.style.display = 'none';
-            selectInterviewCheckSection.style.display = 'block';
-            updateInterviewTable();
-        });
-
-        recordedChunks = [];
-
-        function showModal() {
-            document.getElementById('saveModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('saveModal').style.display = 'none';
-        }
-
-        document.getElementById('stop-recording').addEventListener('click', () => {
-            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-                mediaRecorder.stop();
-                console.log('녹화 종료');
-                showModal();
-            }
-        });
-
-        document.getElementById('saveVideo').addEventListener('click', () => {
-            const videoTitle = document.getElementById('videoTitle').value;
-            const blob = new Blob(recordedChunks, {
-                type: 'video/webm'
+                tableBody.appendChild(row); // 행을 테이블에 추가
             });
-            const url = URL.createObjectURL(blob);
-
-            if (videoTitle) {
-                const currentDate = new Date().toISOString().slice(0, 10);
-                const videoDuration = video.duration;
-                const minutes = Math.floor(videoDuration / 60);
-                const seconds = Math.floor(videoDuration % 60);
-                const duration = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-                const downloadLink = document.createElement('a');
-                downloadLink.href = url;
-                downloadLink.download = `${videoTitle}.webm`;
-                downloadLink.style.display = 'none';
-
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-
-                closeModal();
-
-                window.location.href = 'interview.html';
-            } else {
-                alert('영상 제목을 입력해주세요.');
-            }
-        });
+    }
+ 
     </script>
 
 </body>
